@@ -1,5 +1,6 @@
 using System.Collections;
 using Uqs.Weather;
+using Uqs.Weather.Wrappers;
 
 var builder = WebApplication.CreateBuilder(args);
 var logServices = builder.Services.Where(x => x.ServiceType.Name.Contains("Log")).ToArray();
@@ -17,6 +18,16 @@ builder.Services.AddSingleton<IClient>(
     HttpClient httpClient = new();
     return new Client(apiKey, httpClient);
 });
+
+builder.Services.AddSingleton<INowWrapper>(
+    _ => {
+        return new NowWrapper();
+    });
+
+builder.Services.AddTransient<IRandomWrapper>(
+    _ => {
+        return new RandomWrapper();
+    });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
