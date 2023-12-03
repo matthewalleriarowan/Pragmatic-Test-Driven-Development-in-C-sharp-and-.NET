@@ -402,3 +402,4 @@ secrets.json
 
 #development appsettings
 appsettings.Development.json
+/Uqs.Weather/appsettings.Development.json
