@@ -8,14 +8,14 @@ namespace Uqs.Weather.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private readonly Client _client;
+    private readonly IClient _client;
     private readonly ILogger<WeatherForecastController> _logger;
     
     private int FORECAST_DAYS = 5;
     private decimal GREENWICH_LAT = 51.4934m;
     private decimal GREENWICH_LON = 0.0098m;
 
-    public WeatherForecastController(Client client, ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(IClient client, ILogger<WeatherForecastController> logger)
     {
         _client = client;
         _logger = logger;

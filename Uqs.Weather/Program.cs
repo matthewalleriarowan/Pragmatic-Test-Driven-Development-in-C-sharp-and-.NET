@@ -11,10 +11,10 @@ System.Diagnostics.Debug.WriteLine(logServices.Length);
 
 // Add services to the container.
 
-builder.Services.AddSingleton<Client>( 
+builder.Services.AddSingleton<IClient>( 
     _=> {
     string apiKey = builder.Configuration["OpenWeather:Key"];
-    HttpClient httpClient = new HttpClient();
+    HttpClient httpClient = new();
     return new Client(apiKey, httpClient);
 });
 
