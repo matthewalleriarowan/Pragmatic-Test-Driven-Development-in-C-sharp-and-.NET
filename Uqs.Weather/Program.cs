@@ -14,10 +14,15 @@ System.Diagnostics.Debug.WriteLine(logServices.Length);
 
 builder.Services.AddSingleton<IClient>( 
     _=> {
-    string apiKey = builder.Configuration["OpenWeather:Key"];
-    HttpClient httpClient = new();
-    return new Client(apiKey, httpClient);
-});
+        bool isLoad =
+        bool.Parse(builder.Configuration["LoadTest:IsActive"]);
+        if (isLoad) return new ClientStub();
+        else {
+            string apiKey = builder.Configuration["OpenWeather:Key"];
+            HttpClient httpClient = new();
+            return new Client(apiKey, httpClient);
+        }
+    });
 
 builder.Services.AddSingleton<INowWrapper>(
     _ => {
@@ -28,6 +33,7 @@ builder.Services.AddTransient<IRandomWrapper>(
     _ => {
         return new RandomWrapper();
     });
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

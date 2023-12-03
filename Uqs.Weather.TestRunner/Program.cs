@@ -4,8 +4,9 @@ using Uqs.Weather.Wrappers;
 
 var logger = NullLogger<WeatherForecastController>.Instance;
 var nowWrapper = new NowWrapper();
+var randomWrapper = new RandomWrapper();
 
-var controller = new WeatherForecastController(null!, logger, nowWrapper);
+var controller = new WeatherForecastController(null!, logger, nowWrapper, randomWrapper);
 
 double f1 = controller.ConvertCToF(-1.0);
 if (f1 != 30.20d) throw new Exception("Invalid");
