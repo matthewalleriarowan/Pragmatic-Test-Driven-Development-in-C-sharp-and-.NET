@@ -11,18 +11,14 @@ namespace Uqs.Weather
             res.List = new Forecast[DAYS];
             DateTime now = DateTime.Now.Date;
 
-            System.Diagnostics.Debug.WriteLine(now.ToString());
-
             for (int i = 0; i < DAYS; i++)
             {
                 res.List[i] = new Forecast();
-                res.List[i].Dt = now.AddDays(i);
-                res.List[i].Dt = now.AddHours(12);
+                res.List[i].Dt = now.AddHours(12 + 24 * i);
                 res.List[i].Main = new Main
                 {
                     Temp = Random.Shared.Next(-20, 55)
                 };
-                System.Diagnostics.Debug.WriteLine(res.List[i].Dt.ToString());
             }
             return Task.FromResult(res);
         }
