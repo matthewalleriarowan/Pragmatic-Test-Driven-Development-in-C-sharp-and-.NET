@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging.Abstractions;
 using Uqs.Weather.Controllers;
 
@@ -12,7 +13,7 @@ public class WeatherForecastControllerTests
     [InlineData( 10     ,  50   )]
     public void ConvertCToF_C_F(double c, double f)
     {
-        //Assign
+        //Arrange
         var logger = NullLogger<WeatherForecastController>.Instance;
         var controller = new WeatherForecastController(null!, logger, null!, null!);
 
@@ -22,4 +23,6 @@ public class WeatherForecastControllerTests
         //Assert
         Assert.Equal(f, actual, 1);
     }
+
+    
 }
