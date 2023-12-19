@@ -14,7 +14,7 @@ namespace Uqs.Weather
 
         public ClientStub()
         {
-            _now = DateTime.Now.Date;
+            _now = new DateTime(2022, 1, 1).Date;
             _sevenDaysTemps = new List<double>() {
                 Random.Shared.Next(-20, 55),
                 Random.Shared.Next(-20, 55),

@@ -45,5 +45,86 @@ public class WeatherForecastControllerTests
         // Assert
         Assert.Equal(3, wfs.First().TemperatureC);
     }
-    
+
+    [Theory]
+    [InlineData(1, 2, 3, 4, 5, 6, 7)]
+    [InlineData(2, 2, 3, 4, 5, 6, 7)]
+    [InlineData(3, 2, 3, 4, 5, 6, 7)]
+    [InlineData(4, 2, 3, 4, 5, 6, 7)]
+    [InlineData(5, 2, 3, 4, 5, 6, 7)]
+    [InlineData(6, 2, 3, 4, 5, 6, 7)]
+    [InlineData(7, 2, 3, 4, 5, 6, 7)]
+    public void GetReal_1_1 (double day1Temp, double day2Temp, double day3Temp, double day4Temp, double day5Temp, double day6Temp, double day7Temp)
+    {
+        // Arrange
+
+
+        // Act
+
+
+        // Assert
+
+    }
+
+    [Fact]
+    public void GetReal_1_2()
+    {
+        // Arrange
+
+
+        // Act
+
+
+        // Assert
+
+    }
+
+    [Fact]
+    public void GetReal_1_3()
+    {
+        // Arrange
+
+
+        // Act
+
+
+        // Assert
+
+    }
+
+    public void GetReal_1_4()
+    {
+        // Arrange
+
+
+        // Act
+
+
+        // Assert
+
+    }
+
+    public void GetReal_1_5()
+    {
+        // Arrange
+
+
+        // Act
+
+
+        // Assert
+
+    }
+
+    public void GetReal_1_6()
+    {
+        // Arrange
+
+
+        // Act
+
+
+        // Assert
+
+    }
 }
