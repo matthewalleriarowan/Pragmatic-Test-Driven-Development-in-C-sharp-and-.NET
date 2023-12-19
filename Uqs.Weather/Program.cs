@@ -3,12 +3,14 @@ using Uqs.Weather;
 using Uqs.Weather.Wrappers;
 
 var builder = WebApplication.CreateBuilder(args);
-var logServices = builder.Services.Where(x => x.ServiceType.Name.Contains("Log")).ToArray();
-for (int i = 0; i < logServices.Length; i++)
-{
-    System.Diagnostics.Debug.WriteLine(logServices[i].ServiceType.Name);
-}
-System.Diagnostics.Debug.WriteLine(logServices.Length);
+
+
+//var logServices = builder.Services.Where(x => x.ServiceType.Name.Contains("Log")).ToArray();
+//for (int i = 0; i < logServices.Length; i++)
+//{
+//    System.Diagnostics.Debug.WriteLine(logServices[i].ServiceType.Name);
+//}
+//System.Diagnostics.Debug.WriteLine(logServices.Length);
 
 // Add services to the container.
 

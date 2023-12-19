@@ -4,20 +4,41 @@ namespace Uqs.Weather
 {
     public class ClientStub : IClient
     {
+        private readonly DateTime _now;
+        private readonly IEnumerable<double> _sevenDaysTemps;
+
+        public ClientStub(DateTime now, IEnumerable<double> sevenDaysTemps) { 
+            _now = now;
+            _sevenDaysTemps = sevenDaysTemps;
+        }
+
+        public ClientStub()
+        {
+            _now = DateTime.Now.Date;
+            _sevenDaysTemps = new List<double>() {
+                Random.Shared.Next(-20, 55),
+                Random.Shared.Next(-20, 55),
+                Random.Shared.Next(-20, 55),
+                Random.Shared.Next(-20, 55),
+                Random.Shared.Next(-20, 55),
+                Random.Shared.Next(-20, 55),
+                Random.Shared.Next(-20, 55)
+            };
+        }
+
         public Task<WeatherResponse> WeatherCallAsync(decimal latitude, decimal longitude, Units unit)
         {
             const int DAYS = 7;
             WeatherResponse res = new WeatherResponse();
             res.List = new Forecast[DAYS];
-            DateTime now = DateTime.Now.Date;
 
             for (int i = 0; i < DAYS; i++)
             {
                 res.List[i] = new Forecast();
-                res.List[i].Dt = now.AddHours(12 + 24 * i);
+                res.List[i].Dt = _now.AddHours(12 + 24 * i);
                 res.List[i].Main = new Main
                 {
-                    Temp = Random.Shared.Next(-20, 55)
+                    Temp = _sevenDaysTemps.ElementAt(i)
                 };
             }
             return Task.FromResult(res);

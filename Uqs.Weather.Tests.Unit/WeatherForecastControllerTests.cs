@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging.Abstractions;
 using Uqs.Weather.Controllers;
+using Uqs.Weather.Wrappers;
+using Xunit;
 
 namespace Uqs.Weather.Tests.Unit;
 
@@ -24,5 +26,24 @@ public class WeatherForecastControllerTests
         Assert.Equal(f, actual, 1);
     }
 
+    [Fact]
+    public async void GetReal_NotToday_WFStartsNextDay()
+    {
+        // Arrange
+        const double day2Temp = 3.3;
+        const double day5Temp = 7.7;
+        var today = new DateTime(2022, 1, 1);
+        var realWeatherTemps = new double[] {
+        2, day2Temp, 4, 5.5, 6, day5Temp, 8
+        };
+        var clientStub = new ClientStub(today, realWeatherTemps);
+        var controller = new WeatherForecastController(clientStub, null!, null!, null!);
+
+        // Act
+        IEnumerable<WeatherForecast> wfs = await controller.GetReal();
+
+        // Assert
+        Assert.Equal(3, wfs.First().TemperatureC);
+    }
     
 }

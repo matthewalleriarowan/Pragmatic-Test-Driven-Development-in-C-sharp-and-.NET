@@ -46,6 +46,8 @@ public class WeatherForecastController : ControllerBase
 
         var noon = TimeSpan.FromHours(12);
 
+        Range range = new Range(1, FORECAST_DAYS + 1);
+
         IEnumerable<WeatherForecast> wfs = res.List
             .Where(x => x.Dt.TimeOfDay == noon)
             .Select(x => new WeatherForecast()
@@ -54,7 +56,7 @@ public class WeatherForecastController : ControllerBase
                 TemperatureC = (int)Math.Round(x.Main.Temp),
                 Summary = MapFeelToTemp((int)Math.Round(x.Main.Temp))
             })
-        .Take(FORECAST_DAYS)
+        .Take(range)
         .ToList();
 
         return wfs;
